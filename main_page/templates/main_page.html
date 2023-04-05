@@ -40,10 +40,10 @@
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap h-100">
               <a href="#" class="h-100">
-                <h5>Season <br> Sale 50% Off</h5>
+                <h5>Індивідуальний <br>підхід</h5>
                 <p>
-                  Amet sit amet dolor
-                  <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+                  Допоможемо підібрати
+                  <strong>засоби догляду з урахуванням Ваших побажань.</strong>
                 </p>
               </a>
             </div>
@@ -51,10 +51,10 @@
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap bg-warning h-100">
               <a href="#" class="h-100">
-                <h5>Buy <br> A Gift Card</h5>
+                <h5>Краса <br> врятує світ</h5>
                 <p>
-                  Amet sit amet dolor
-                  <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+                  Не забувайте
+                  <strong>піклуватися про себе і своїх близьких.</strong>
                 </p>
               </a>
             </div>
@@ -73,44 +73,18 @@
         </div>
 
         <div class="row">
+          {% for item in products %}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="shop-single.html"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Bioderma</a></h3>
-            <p class="price"><del>95.00</del> &mdash; $55.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop-single.html"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Chanca Piedra</a></h3>
-            <p class="price">$70.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop-single.html"> <img src="{% static 'images/product_03.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-            <p class="price">$120.00</p>
+            <a href="shop-single.html"> <img src="{{ item.image.url }}" alt="Image"></a>
+            <h3 class="text-dark"><a href="shop-single.html">{{ item.name }}</a></h3>
+            <p class="price">{{ item.price }}</p>
           </div>
 
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-
-            <a href="shop-single.html"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Cetyl Pure</a></h3>
-            <p class="price"><del>45.00</del> &mdash; $20.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="shop-single.html"> <img src="{% static 'images/product_05.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">CLA Core</a></h3>
-            <p class="price">$38.00</p>
-          </div>
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">Sale</span>
-            <a href="shop-single.html"> <img src="{% static 'images/product_06.png' %}" alt="Image"></a>
-            <h3 class="text-dark"><a href="shop-single.html">Poo Pourri</a></h3>
-            <p class="price"><del>$89</del> &mdash; $38.00</p>
-          </div>
+          {% endfor %}
         </div>
         <div class="row mt-5">
           <div class="col-12 text-center">
-            <a href="{% url 'shop:shop' %}" class="btn btn-primary px-4 py-3">View All Products</a>
+            <a href="{% url 'shop:shop' %}" class="btn btn-primary px-4 py-3">Дивитись всі продукти</a>
           </div>
         </div>
       </div>
@@ -127,30 +101,14 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
+            {% for item in newest %}
 
               <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="{% static 'images/product_03.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
+                <a href="shop-single.html"> <img src="{{ item.image.url }}" alt="Image"></a>
+                <h3 class="text-dark"><a href="shop-single.html">{{ item.name }}</a></h3>
+                <p class="price">{{ item.price }}</p>
               </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="{% static 'images/product_01.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="{% static 'images/product_02.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="shop-single.html"> <img src="{% static 'images/product_04.png' %}" alt="Image"></a>
-                <h3 class="text-dark"><a href="shop-single.html">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
+            {% endfor %}
 
             </div>
           </div>
@@ -171,44 +129,31 @@
 
               <div class="testimony">
                 <blockquote>
-                  <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;Поки відгуків нема, будьте першими.&rdquo;</p>
                 </blockquote>
 
-                <p>&mdash; Kelly Holmes</p>
+                <p>&mdash; Chat GPT</p>
               </div>
 
               <div class="testimony">
                 <blockquote>
-                  <img src="images/person_2.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
+                  <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Якби я була живою істотою, я обов'язково купувала би в цьому магазині і всі би мене любили.&rdquo;</p>
                 </blockquote>
 
-                <p>&mdash; Rebecca Morando</p>
+                <p>&mdash; Сірі</p>
               </div>
 
               <div class="testimony">
                 <blockquote>
-                  <img src="images/person_3.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
                     obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
                     unde.&rdquo;</p>
                 </blockquote>
 
                 <p>&mdash; Lucas Gallone</p>
-              </div>
-
-              <div class="testimony">
-                <blockquote>
-                  <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
-                </blockquote>
-
-                <p>&mdash; Andrew Neel</p>
               </div>
 
             </div>

@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from shop.models import Product
 
 # Create your views here.
 
@@ -10,14 +11,12 @@ menu = [{'title': 'Головна', 'url_name': 'main_page'},
 
 def main_page(request):
 
+    products = Product.objects.filter(available=True, popular=True)
+    newest = Product.objects.filter(available=True, popular=False)
     return render(request, 'main_page.html', context={'menu': menu,
-                                                      'num_el': 1, })
-
-
-def shop(request):
-
-    return render(request, 'shop.html', context={'menu': menu,
-                                                 'num_el': 2, })
+                                                      'num_el': 1,
+                                                      'products': products,
+                                                      'newest': newest})
 
 
 def sysderma(request):
