@@ -1,9 +1,10 @@
 from django.contrib import admin
-from .models import Product, Brand, Category
+from .models import Product, Brand, Category, Line
 
 
 admin.site.register(Brand)
 admin.site.register(Category)
+admin.site.register(Line)
 
 
 @admin.register(Product)

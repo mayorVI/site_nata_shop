@@ -1,0 +1,170 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+    NataShop | Checkout
+{% endblock %}
+
+{% block content %}
+<!---->
+
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-0">
+            <a href="{% url 'main_page' %}">Головна</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Замовлення</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <div class="bg-light rounded p-3">
+              <p class="mb-0">Постійний клієнт? <a href="#" class="d-inline-block">Натисніть</a> щоб залогінитись</p>
+            </div>
+          </div>
+        </div>
+        <!-- </form> -->
+        <form action="{% url 'orders:order_create' %}" method="post">
+        <div class="row">
+
+        {% csrf_token %}
+
+          <div class="col-md-6 mb-5 mb-md-0">
+            <h2 class="h3 mb-3 text-black">Відомості для оплати</h2>
+            <div class="p-3 p-lg-5 border">
+
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="c_fname" class="text-black">Ім'я <span class="text-danger">*</span></label>
+                  <span>{{ form.first_name }}</span>
+                </div>
+                <div class="col-md-6">
+                  <label for="c_lname" class="text-black">Прізвище <span class="text-danger">*</span></label>
+                  <span>{{ form.last_name }}</span>
+                </div>
+              </div>
+
+              <div class="form-group row mb-5">
+                <div class="col-md-6">
+                  <label for="c_phone" class="text-black">Телефон <span class="text-danger">*</span></label>
+                  <span>{{ form.phone_number }}</span>
+                </div>
+                <div class="col-md-6">
+                  <label for="c_email_address" class="text-black">Email  <span class="text-danger">*</span></label>
+                  <span>{{ form.email }}</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-12">
+                  <label for="c_address" class="text-black">Адреса <span class="text-danger">*</span></label>
+                  <span>{{ form.address }}</span>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <label for="c_create_account" class="text-black" data-toggle="collapse" href="#create_an_account"
+                  role="button" aria-expanded="false" aria-controls="create_an_account"><input type="checkbox" value="1"
+                    id="c_create_account"> Вже є акаунт?</label>
+                <div class="collapse" id="create_an_account">
+                  <div class="py-2">
+                    <p class="mb-3">Відкрийте акаунт. Якщо Ви постійний користувач
+                      будь ласка введіть логін вгорі сторінки.</p>
+                    <div class="form-group">
+                      <label for="c_account_password" class="text-black">Account Password</label>
+                      <input type="email" class="form-control" id="c_account_password" name="c_account_password"
+                        placeholder="">
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+
+    
+              <div class="form-group">
+                <label for="c_order_notes" class="text-black">Коментар</label>
+                <textarea name="c_order_notes" id="c_order_notes" cols="30" rows="5" class="form-control"
+                  placeholder="Write your notes here..."></textarea>
+              </div>
+    
+            </div>
+          </div>
+          <div class="col-md-6">
+    
+
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black">Ваше замовлення</h2>
+                <div class="p-3 p-lg-5 border">
+                  <table class="table site-block-order-table mb-5">
+                    <thead>
+                      <th>Товар</th>
+                      <th>Вартість</th>
+                    </thead>
+                    <tbody>
+                    {% for item in cart %}
+                      {% with product=item.product %}
+                       <tr>
+                         <td>{{ product.name }} <strong class="mx-2">x</strong> {{ item.quantity }}</td>
+                         <td>{{ item.total_price }}</td>
+                       </tr>
+                      {% endwith %}
+                    {% endfor %}
+
+                      <tr>
+                        <td class="text-black font-weight-bold"><strong>Разом</strong></td>
+                        <td class="text-black font-weight-bold"><strong>{{ cart.get_total_price }}</strong></td>
+                      </tr>
+                    </tbody>
+                  </table>
+    
+                  <div class="border mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
+                        aria-expanded="false" aria-controls="collapsebank">Оплата карткою</a></h3>
+    
+                    <div class="collapse" id="collapsebank">
+                      <div class="py-2 px-4">
+                        <p class="mb-0">Ви можете сплатити за замовлення банківською карткою.</p>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="border mb-3">
+                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button"
+                        aria-expanded="false" aria-controls="collapsecheque">Оплата готівкою</a></h3>
+    
+                    <div class="collapse" id="collapsecheque">
+                      <div class="py-2 px-4">
+                        <p class="mb-0">Можно оплатити готівкою при отриманні замовлення.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+<!--               <button class="btn btn-primary btn-lg btn-block" onclick="window.location='{% url 'orders:order_create' %}'"
+                    >Зробити замовлення</button>   -->
+                  </div>
+    
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-lg-12">
+                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Зробити замовлення">
+            </div>
+        </div>
+
+        </form>
+        <!-- </form> -->
+      </div>
+    </div>
+
+{% endblock %}
