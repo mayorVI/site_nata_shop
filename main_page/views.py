@@ -2,14 +2,14 @@ from django.shortcuts import render
 from shop.models import Product
 from cart.cart import Cart
 from contact.forms import LetterForm
-from contact.models import Letter
+
 
 # Create your views here.
 
 menu = [{'title': 'Головна', 'url_name': 'main_page'},
         {'title': 'Товари', 'url_name': 'shop:shop'},
-        {'title': 'Sysderma', 'url_name': 'sysderma'},
-        {'title': 'Контакт', 'url_name': 'contact'},
+        {'title': 'Лінійки', 'url_name': 'sysderma'},
+        {'title': 'Контакти', 'url_name': 'contact'},
 ]
 
 def main_page(request):
@@ -34,7 +34,6 @@ def sysderma(request):
 def contact(request):
 
     cart = Cart(request)
-    letter_form = LetterForm(request)
 
     if request.method == 'POST':
         letter_form = LetterForm(request.POST)
