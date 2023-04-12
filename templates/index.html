@@ -50,7 +50,18 @@
                       {% if forloop.counter == num_el %}
                         <li class="active"><a href="{% url m.url_name %}">{{ m.title }}</a></li>
                       {% else %}
-                        <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+                         {% if  m.title in 'Бренди' %}
+                           <li class="has-children">
+                           <a href="{% url m.url_name %}">{{ m.title }}</a>
+                            <ul class="dropdown">
+                              {% for br in brands %}
+                                <li><a href="#">{{ br.name }}</a></li>
+                              {% endfor %}
+                            </ul>
+                           </li>
+                         {% else %}
+                           <li><a href="{% url m.url_name %}">{{ m.title }}</a></li>
+                         {% endif %}
                       {% endif %}
                   {% endfor %}
                 <li class="has-children">
@@ -109,10 +120,11 @@
           <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
             <h3 class="footer-heading mb-4">Перелік товарів</h3>
             <ul class="list-unstyled">
-              <li><a href="#">Supplements</a></li>
-              <li><a href="#">Vitamins</a></li>
-              <li><a href="#">Diet &amp; Nutrition</a></li>
-              <li><a href="#">Tea &amp; Coffee</a></li>
+             {% for item in menu %}
+                 {% if not forloop.first and not forloop.last %}
+                    <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
+                 {% endif %}
+             {% endfor %}
             </ul>
           </div>
 
