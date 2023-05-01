@@ -47,16 +47,26 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                   {% for m in menu %}
-                      {% if forloop.counter == num_el %}
+                      {% if forloop.counter == num_el  %}
                         <li class="active"><a href="{% url m.url_name %}">{{ m.title }}</a></li>
                       {% else %}
-                         {% if  m.title in 'Бренди' %}
+                         {% if  m.title in 'БрендиТипиЛінійки' %}
                            <li class="has-children">
-                           <a href="{% url m.url_name %}">{{ m.title }}</a>
+                           <a href="{% url  m.url_name  %}">{{ m.title }}</a>
                             <ul class="dropdown">
-                              {% for br in brands %}
-                                <li><a href="#">{{ br.name }}</a></li>
+                            {% if  m.title == 'Бренди' %}
+                              {% for i in brands %}
+                                 <li><a href="{% url 'shop:brand_products' i.pk %}">{{ i.name }}</a></li>
                               {% endfor %}
+                            {% elif m.title == 'Типи' %}
+                              {% for i in categories %}
+                                <li><a href="{% url 'shop:cat_products' i.pk %}">{{ i.name }}</a></li>
+                              {% endfor %}
+                            {% elif m.title == 'Лінійки' %}
+                              {% for i in lines %}
+                                <li><a href="{% url 'shop:line_products' i.pk %}">{{ i.name }}</a></li>
+                              {% endfor %}
+                            {% endif %}
                             </ul>
                            </li>
                          {% else %}
@@ -64,24 +74,7 @@
                          {% endif %}
                       {% endif %}
                   {% endfor %}
-                <li class="has-children">
-                  <a href="#">Dropdown</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
 
-                  </ul>
-                </li>
               </ul>
             </nav>
           </div>

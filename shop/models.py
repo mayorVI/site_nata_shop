@@ -9,8 +9,13 @@ class Brand(models.Model):
     image = models.ImageField(upload_to='brands/%Y/%m/%d', blank=True)
     available = models.BooleanField(default=True)
 
+    class Meta:
+        ordering = ('name',)
+
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse("shop:brand_products", args=[self.id])
 
 
 class Category(models.Model):
@@ -27,6 +32,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse("shop:cat_products", args=[self.id])
 
 class Line(models.Model):
     name = models.CharField(max_length=40, db_index=True, verbose_name='Лінія')
@@ -42,6 +49,8 @@ class Line(models.Model):
 
     def __str__(self):
         return self.name
+    def get_absolute_url(self):
+        return reverse("shop:line_products", args=[self.id])
 
 class Product(models.Model):
     name = models.CharField(max_length=200, db_index=True, verbose_name='Назва')

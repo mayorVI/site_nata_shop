@@ -39,7 +39,15 @@ class OrderCreateForm(forms.ModelForm):
                                  'name': "c_address",
                                  'placeholder': "Street address"
     }))
-
+    message = forms.CharField(max_length=250,
+                                 widget=forms.Textarea(attrs={
+                                 'name': "c_order_notes",
+                                 'id': "c_order_notes",
+                                 'cols': "30",
+                                 'rows': "5",
+                                 'class': "form-control",
+                                 'placeholder': "Сповіщення ..."
+    }))
     class Meta:
         model = Order
         fields = ['first_name', 'last_name', 'phone_number', 'email', 'address', 'message']

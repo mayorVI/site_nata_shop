@@ -7,13 +7,14 @@ from contact.forms import LetterForm
 # Create your views here.
 
 menu = [{'title': 'Головна', 'url_name': 'main_page'},
-        {'title': 'Товари', 'url_name': 'shop:shop'},
-        {'title': 'Бренди', 'url_name': 'shop:shop'},
-        {'title': 'Типи', 'url_name': 'shop:shop'},
-        {'title': 'Лінійки', 'url_name': 'sysderma'},
+        {'title': 'Бренди', 'url_name': 'shop:brands'},
+        {'title': 'Типи',   'url_name': 'shop:categories'},
+        {'title': 'Лінійки', 'url_name': 'shop:lines'},
         {'title': 'Контакти', 'url_name': 'contact'},
 ]
 brands = Brand.objects.filter(available=True)
+categories = Category.objects.filter(available=True)
+lines = Line.objects.filter(available=True)
 def main_page(request):
 
     cart = Cart(request)
@@ -22,6 +23,8 @@ def main_page(request):
     return render(request, 'main_page.html', context={'menu': menu,
                                                       'num_el': 1,
                                                       'brands': brands,
+                                                      'categories': categories,
+                                                      'lines': lines,
                                                       'products': products,
                                                       'newest': newest,
                                                       'cart': cart, })
@@ -31,7 +34,8 @@ def main_page(request):
 def sysderma(request):
 
     return render(request, 'thankyou.html', context={'menu': menu,
-                                                     'num_el': 5, })
+                                                     'num_el': 4,
+ })
 
 
 def contact(request):
@@ -42,14 +46,16 @@ def contact(request):
         letter_form = LetterForm(request.POST)
         if letter_form.is_valid():
             letter_form.save()
-            return render(request, 'thankyou.html', context={'menu': menu,
-                                                             'num_el': 5, })
+            return render(request, 'thankyou.html', context={'menu': menu, 'num_el': 5,
+})
     else:
         letter_form = LetterForm()
     return render(request, 'contact.html', context={'menu': menu,
-                                                    'num_el': 6,
+                                                    'num_el': 5,
                                                     'letter_form': letter_form,
                                                     'cart': cart,
                                                     'brands': brands,
+                                                    'categories': categories,
+                                                    'lines': lines,
                                                     })
 
