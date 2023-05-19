@@ -1,0 +1,15 @@
+<h2>{{title}}</h2>
+<ul>
+     {% for i in orders %}
+      <li>
+           <h3>{{i.first_name}}  {{ i.last_name }}, тел: {{ i.phone_number}}, email: {{ i.email}}, Створено: {{ i.created|date:'d.m.y'}}</h3>
+           <p>Адреса: {{ i.address }} {% if i.paid %} Сплачено {% endif %}</p>
+             {% for j in orderitems %}
+                 {% if j.order == i %}
+                   <p> {{ j.product }} {{ j.price }} ₴, {{ j.quantity }} шт. </p>
+                 {% endif %}
+             {% endfor %}
+           <hr>
+      </li>
+     {% endfor %}
+</ul>

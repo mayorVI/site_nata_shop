@@ -14,8 +14,9 @@ class Brand(models.Model):
 
     def __str__(self):
         return self.name
+
     def get_absolute_url(self):
-        return reverse("shop:brand_products", args=[self.id])
+        return reverse("shop:brand_products", kwargs={'brand_slug': self.slug})
 
 
 class Category(models.Model):
@@ -33,7 +34,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse("shop:cat_products", args=[self.id])
+        return reverse("shop:cat_products", kwargs={'category_slug': self.slug})
 
 class Line(models.Model):
     name = models.CharField(max_length=40, db_index=True, verbose_name='Лінія')
@@ -50,16 +51,16 @@ class Line(models.Model):
     def __str__(self):
         return self.name
     def get_absolute_url(self):
-        return reverse("shop:line_products", args=[self.id])
+        return reverse("shop:line_products", kwargs={'line_slug': self.slug})
 
 class Product(models.Model):
-    name = models.CharField(max_length=200, db_index=True, verbose_name='Назва')
+    name = models.CharField(max_length=100, db_index=True, verbose_name='Назва')
     slug = models.SlugField(max_length=100, db_index=True, verbose_name='url')
     brnd = models.ForeignKey(Brand, on_delete=models.PROTECT)
     line = models.ForeignKey(Line, on_delete=models.PROTECT)
     cat = models.ForeignKey(Category, on_delete=models.PROTECT)
     description = models.CharField(max_length=255, verbose_name='Опис')
-    ingredients = models.CharField(max_length=255, verbose_name='Состав')
+    ingredients = models.CharField(max_length=255, verbose_name='Склад')
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
     properties = models.TextField(blank=True, verbose_name='Характеристики')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Ціна')

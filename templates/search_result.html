@@ -1,0 +1,13 @@
+{% load thumbnail %}
+<h2>Результат пошуку</h2>
+
+<ul type="none">
+  {% for item in products %}
+    <li>
+       <img src="{% thumbnail item.image 200x100 %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+       <a href="{{ item.get_absolute_url }}">{{ item.name }} </a> {{ item.brnd }}, {{ item.cat }},  {{ item.price }}
+    </li>
+    <hr>
+  {% endfor %}
+</ul>
+

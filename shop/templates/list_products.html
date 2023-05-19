@@ -1,0 +1,10 @@
+    <div class="row">
+        {% for item in products %}
+          <div class="col-sm-6 col-lg-4 text-center item mb-4">
+            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{{ item.image.url }}
+                     {% endif %}" alt="Image"></a>
+            <h5 class="text-dark"><a href="{{ item.get_absolute_url }}">{{item.name}}</a></h5>
+            <p class="price"> &#8372; {{item.price}}</p>
+          </div>
+        {% endfor %}
+    </div>

@@ -1,9 +1,9 @@
 {% load static %}
+{% load nata_shop_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
- <!--  <title>Pharma &mdash; Colorlib Template</title>  -->
   <title>{% block title %}NataShop | Home{% endblock %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,11 +16,9 @@
   <link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
   <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
   <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
-
-
   <link rel="stylesheet" href="{% static 'css/aos.css' %}">
-
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
   {% block head %}{% endblock %}
 </head>
 
@@ -30,8 +28,8 @@
       <div class="search-wrap">
         <div class="container">
           <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
-          <form action="#" method="post">
-            <input type="text" class="form-control" placeholder="Search keyword and hit enter...">
+          <form action="{% url 'shop:searching' %}" method="get">
+            <input name="q" type="text" class="form-control" placeholder="Наберіть текст для пошуку і натисніть enter...">
           </form>
         </div>
       </div>
@@ -56,15 +54,15 @@
                             <ul class="dropdown">
                             {% if  m.title == 'Бренди' %}
                               {% for i in brands %}
-                                 <li><a href="{% url 'shop:brand_products' i.pk %}">{{ i.name }}</a></li>
+                                 <li><a href="{% url 'shop:brand_products' i.slug %}">{{ i.name }}</a></li>
                               {% endfor %}
                             {% elif m.title == 'Типи' %}
                               {% for i in categories %}
-                                <li><a href="{% url 'shop:cat_products' i.pk %}">{{ i.name }}</a></li>
+                                <li><a href="{% url 'shop:cat_products' i.slug %}">{{ i.name }}</a></li>
                               {% endfor %}
                             {% elif m.title == 'Лінійки' %}
                               {% for i in lines %}
-                                <li><a href="{% url 'shop:line_products' i.pk %}">{{ i.name }}</a></li>
+                                <li><a href="{% url 'shop:line_products' i.slug %}">{{ i.name }}</a></li>
                               {% endfor %}
                             {% endif %}
                             </ul>
@@ -118,6 +116,10 @@
                     <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
                  {% endif %}
              {% endfor %}
+            {% if 'manager' in user.groups.all.0.name %}
+              <li><a href="{% url 'manager:letters' %}">Сповіщення</a></li>
+              <li><a href="{% url 'manager:orders' %}">Замовлення</a></li>
+            {% endif %}
             </ul>
           </div>
 
@@ -128,7 +130,7 @@
                 <li><a href="https://www.instagram.com/p/CqsOTPYNA0f/?igshid=MjljNjAzYmU%3D">
                 <img src="{% static 'images/insta-48.png' %}" alt=""/> Інстаграм</a></li>
                 <li class="phone"><a href="tel:+380671472942">+38 067 147 29 42</a></li>
-                <li class="email"><a href="mailto:bubble.ball.ukr@gmail.com">bubble.ball.ukr@gmail.com</a></li>
+                <li class="email"><a href="mailto:natashop.ukr@gmail.com">natashop.ukr@gmail.com</a></li>
               </ul>
             </div>
 

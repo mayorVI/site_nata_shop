@@ -2,6 +2,8 @@ from django.shortcuts import render
 from shop.models import Product, Brand, Category, Line
 from cart.cart import Cart
 from contact.forms import LetterForm
+from contact.models import Letter
+from orders.models import Order, OrderItem
 
 
 # Create your views here.
@@ -31,13 +33,6 @@ def main_page(request):
 
 
 
-def sysderma(request):
-
-    return render(request, 'thankyou.html', context={'menu': menu,
-                                                     'num_el': 4,
- })
-
-
 def contact(request):
 
     cart = Cart(request)
@@ -58,4 +53,5 @@ def contact(request):
                                                     'categories': categories,
                                                     'lines': lines,
                                                     })
+
 

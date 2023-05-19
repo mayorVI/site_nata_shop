@@ -5,6 +5,5 @@ from .views import *
 urlpatterns = [
     path('', main_page, name='main_page'),
     path('contact/', contact, name='contact'),
-    path('shop/', include('shop.urls')),
-    path('sysderma/', sysderma, name='sysderma')
+    path('shop/', include('shop.urls'))
 ]

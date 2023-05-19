@@ -22,8 +22,13 @@
           <div class="col-md-12 text-center">
             <span class="icon-check_circle display-3 text-success"></span>
             <h2 class="display-3 text-black">Дякуємо!</h2>
-            <p class="lead mb-5">Ваше замовлення {{ order.id }} успішно сформовано.</p>
-            <p><a href="{% url 'shop:shop' %}" class="btn btn-md height-auto px-4 py-3 btn-primary">Назад в каталог</a></p>
+              {% if num_el == 5 %}
+                 <p class="lead mb-5">Ваше сповіщення відправлено.</p>
+                 <p><a href="{% url 'main_page' %}" class="btn btn-md height-auto px-4 py-3 btn-primary">На Головну</a></p>
+              {% else %}
+                 <p class="lead mb-5">Ваше замовлення {{ order.id }} успішно сформовано.</p>
+                 <p><a href="{% url 'shop:shop' %}" class="btn btn-md height-auto px-4 py-3 btn-primary">Назад в каталог</a></p>
+              {% endif %}
           </div>
         </div>
       </div>

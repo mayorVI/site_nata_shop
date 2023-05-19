@@ -1,0 +1,10 @@
+<h2>{{title}}</h2>
+<ul>
+         {% for i in letters %}
+         <li>
+                   <h3>{{i.first_name}}  {{ i.last_name }}, email: {{ i.email}}, Створено: {{ i.created|date:'d.m.y'}}</h3>
+                   <p>Предмет: {{ i.subject }}, Зміст: {{i.message}}</p>
+                   <hr>
+         </li>
+         {% endfor %}
+</ul>

@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from account.views import login_view, logout_view, registration_view
+from account.views import *
 
 urlpatterns = [
     path('login/', login_view, name='login'),
@@ -14,6 +14,7 @@ urlpatterns = [
     path('registration/', registration_view, name='registration'),
     path('admin/', admin.site.urls),
     path('cart/', include('cart.urls', namespace='cart')),
+    path('manager/', include('manager.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('', include('main_page.urls')),
 ]
