@@ -76,7 +76,7 @@
         <div class="row">
           {% for item in products %}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{% thumbnail item.image 200x100 %}
+            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{% thumbnail item.image 'middle' %}
                      {% endif %}" alt="Image"></a>
             <h4 class="text-dark"><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h4>
             <p class="price">{{ item.price }}</p>
@@ -106,7 +106,7 @@
             {% for item in newest %}
 
               <div class="text-center item mb-4">
-                <a href="{{ item.get_absolute_url }}"> <img src="{{ item.image.url }}" alt="Image"></a>
+                <a href="{{ item.get_absolute_url }}"> <img src="{% thumbnail item.image 'middle' %}" alt="Image"></a>
                 <h4 class="text-dark"><a href="{{ item.get_absolute_url }}">{{ item.name }}</a></h4>
                 <p class="price">{{ item.price }}</p>
               </div>
@@ -131,7 +131,7 @@
 
               <div class="testimony">
                 <blockquote>
-                  <img src="{% static 'images/person_2.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <img src="{% static 'images/icons8-мужчина-в-кружке-80.png' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;Поки відгуків нема, будьте першими.&rdquo;</p>
                 </blockquote>
 
@@ -140,7 +140,7 @@
 
               <div class="testimony">
                 <blockquote>
-                  <img src="{% static 'images/person_1.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <img src="{% static 'images/icons8-мужчина-в-кружке-80.png' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;Якби я була живою істотою, я обов'язково купувала би в цьому магазині і всі би мене любили.&rdquo;</p>
                 </blockquote>
 
@@ -149,13 +149,11 @@
 
               <div class="testimony">
                 <blockquote>
-                  <img src="{% static 'images/person_3.jpg' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
-                    obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
-                    unde.&rdquo;</p>
+                  <img src="{% static 'images/icons8-мужчина-в-кружке-80.png' %}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+                  <p>&ldquo;Місце для Вашого відгуку&rdquo;</p>
                 </blockquote>
 
-                <p>&mdash; Lucas Gallone</p>
+                <p>&mdash; Кращій клієнт</p>
               </div>
 
             </div>
@@ -168,8 +166,9 @@
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
-            {% with categories.first as cat %}
-            <a href="{% url 'shop:cat_products' cat.slug %}" class="banner-1 h-100 d-flex" style="background-image: url({% static 'images/biorevright.jpg' %});">
+            {% with categories.1 as cat %}
+            <a href="{% url 'shop:cat_products' cat.slug %}" class="banner-1 h-100 d-flex"
+               style="background-image: url({% static 'images/-stock-photo-beautiful-female-body.jpg' %});">
               <div class="banner-1-inner align-self-center">
                 <h2>{{ cat.name }}</h2>
                 <p>{{ cat.description }}
@@ -180,7 +179,7 @@
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
             {% with categories.last as cat %}
-            <a href="{% url 'shop:cat_products' cat.slug %}" class="banner-1 h-100 d-flex" style="background-image: url({% static 'images/biorevleft2.jpg' %});">
+            <a href="{% url 'shop:cat_products' cat.slug %}" class="banner-1 h-100 d-flex" style="background-image: url({% static 'images/tilo.jpg' %});">
               <div class="banner-1-inner ml-auto  align-self-center">
                 <h2>{{ cat.name }}</h2>
                 <p>{{ cat.description }}

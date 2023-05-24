@@ -139,3 +139,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
+
+THUMBNAIL_BASEDIR = 'thumbnails'
+THUMBNAIL_ALIASES ={
+     'manager':   {'small':  {'size': (160, 90)}},
+     'main_page': {'small':  {'size': (160, 90)},
+                   'middle': {'size': (270, 175)},
+                   'large':  {'size': (600, 0)}},
+     'shop':      {'small':  {'size': (160, 90)},
+                   'middle': {'size': (200, 300)},
+                   'large':  {'size': (600, 0)}},
+     'cart':      {'middle': {'size': (270, 0)}},
+}

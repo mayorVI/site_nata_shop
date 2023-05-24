@@ -15,12 +15,14 @@ class ProductList(ListView):
     context_object_name = 'products'
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        cart = Cart(self.request)
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['num_el'] = 2
         context['brands'] = brands
         context['categories'] = categories
         context['lines'] = lines
+        context['cart'] = cart
         return context
 
     def get_queryset(self):
@@ -32,12 +34,14 @@ class BrandProductList(ListView):
     context_object_name = 'products'
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        cart = Cart(self.request)
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['num_el'] = 2
         context['brands'] = brands
         context['categories'] = categories
         context['lines'] = lines
+        context['cart'] = cart
         return context
 
     def get_queryset(self):
@@ -51,12 +55,14 @@ class LineProductList(ListView):
     context_object_name = 'products'
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        cart = Cart(self.request)
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['num_el'] = 4
         context['brands'] = brands
         context['categories'] = categories
         context['lines'] = lines
+        context['cart'] = cart
         return context
 
     def get_queryset(self):
@@ -68,28 +74,18 @@ class CatProductList(ListView):
     context_object_name = 'products'
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        cart = Cart(self.request)
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
         context['num_el'] = 3
         context['brands'] = brands
         context['categories'] = categories
         context['lines'] = lines
+        context['cart'] = cart
         return context
 
     def get_queryset(self):
         return Product.objects.filter(cat__slug=self.kwargs['category_slug'], available=True)
-
-
-# def shop_view(request, sort=None):
-#     cart = Cart(request)
-#
-#     return render(request, 'shop.html', context={'menu': menu,
-#                                                  'num_el': 2,
-#                                                  'brands': brands,
-#                                                  'categories': categories,
-#                                                  'lines': lines,
-#                                                  'products': products,
-#                                                  'cart': cart})
 
 
 def shop_sort_view(request, id=1):
@@ -159,7 +155,7 @@ def brand_view(request,  id):
                                                      'products': products,
                                                      'cart': cart})
     else:
-        return  HttpResponse('Нема на складі')
+        return HttpResponse('Нема на складі')
 
 def line_view(request,  id):
     cart = Cart(request)

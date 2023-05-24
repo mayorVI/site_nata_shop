@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %}
     NataShop | Cart
@@ -44,11 +45,12 @@
                     <tr>
                         <td class="product-thumbnail">
                             <a href="{{ product.get_absolute_url }}">
-                                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/product_02.png' %}{% endif %}">
+                                <img src="{% if product.image %}{% thumbnail product.image 'middle' %}
+                                   {% else %}{% static 'images/kojastatia.jpg' %}{% endif %}">
                             </a>
                         </td>
                         <td class="product-name">
-                            <h2 class="h5 text-black">{{ product.name }}</h2>
+                            <h3 class="h5 text-black">{{ product.name }}</h3>
                         </td>
                         <td>
                             {{ item.price }}
@@ -88,11 +90,6 @@
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">
               <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Кошик загалом</h3>
-                  </div>
-                </div>
                 <div class="row mb-3">
                   <div class="col-md-6">
                     <span class="text-black">Разом</span>

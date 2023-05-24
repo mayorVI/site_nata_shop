@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %}
     NataShop | Shop
@@ -11,12 +12,11 @@
     <div class="site-section">
       <div class="container">
         
-
         <div class="row">
 
             {% for item in categories %}
               <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{{ item.image.url }}
+            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{% thumbnail item.image 270x170 %}
                                                              {% endif %}" alt="Image"></a>
             <h5 class="text-dark"><a href="{{ item.get_absolute_url }}">{{item.name}}</a></h5>
           </div>

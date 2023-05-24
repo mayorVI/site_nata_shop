@@ -16,14 +16,9 @@
         <div class="row">
         {% if products.count > 20 %}
           <div class="col-lg-6">
-            <h3 class="mb-3 h6 text-uppercase text-black d-block">Фільтр по ціні</h3>
-            <div id="slider-range" class="border-primary"></div>
-            <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
-          </div>
-          <div class="col-lg-6">
-            <h3 class="mb-3 h6 text-uppercase text-black d-block">Сортування</h3>
+
             <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference"
-              data-toggle="dropdown">Reference</button>
+              data-toggle="dropdown">Сортування</button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
               <a class="dropdown-item" href="{% url 'shop:shop_sort' 1 %}">Від A до Я</a>
               <a class="dropdown-item" href="{% url 'shop:shop_sort' 2 %}">Від Я до A</a>
@@ -38,7 +33,7 @@
 
         {% for item in products %}
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{% thumbnail item.image 200x100 %}
+            <a href="{{ item.get_absolute_url }}"> <img src="{% if item.image %}{% thumbnail item.image 'middle' %}
                      {% endif %}" alt="Image"></a>
             <h5 class="text-dark"><a href="{{ item.get_absolute_url }}">{{item.name}}</a></h5>
             <p class="price"> &#8372; {{item.price}}</p>

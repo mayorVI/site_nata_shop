@@ -12,7 +12,6 @@ urlpatterns = [
     path('brand/<slug:brand_slug>/', BrandProductList.as_view(), name='brand_products'),
     path('line/', lines_view, name='lines'),
     path('line/<slug:line_slug>/', LineProductList.as_view(), name='line_products'),
-    # path('line/<int:id>/', line_view, name='line_products'),
     path('categories/', cats_view, name='categories'),
     path('categories/<slug:category_slug>/', CatProductList.as_view(), name='cat_products'),
     path('<int:id>/<slug:slug>/', product_detail, name='product_detail'),

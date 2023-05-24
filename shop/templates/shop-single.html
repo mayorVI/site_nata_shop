@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% load static %}
+{% load thumbnail %}
 
 {% block title %}
     NataShop | Shop
@@ -24,7 +25,7 @@
         <div class="row">
           <div class="col-md-5 mr-auto">
             <div class="border text-center">
-              <img src="{% if product.image %}{{ product.image.url }}
+              <img src="{% if product.image %}{%  thumbnail product.image 'large' %}
                     {% else %}{% static "images/omoloj.jpg" %}{% endif %}" alt="Image" class="img-fluid p-5">
             </div>
           </div>
@@ -39,7 +40,7 @@
               <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                    aria-controls="pills-home" aria-selected="true">Загальна інформація</a>
+                    aria-controls="pills-home" aria-selected="true">Короткий опис</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
