@@ -56,7 +56,11 @@
                             {{ item.price }}
                         </td>
                         <td>
+                            <a href="{% url "cart:unit_remove" product.id %}"
+                               class="btn btn-primary height-auto btn-sm">-</a>
                             {{item.quantity}}
+                            <a href="{% url "cart:cart_add" product.id %}"
+                               class="btn btn-primary height-auto btn-sm">+</a>
                         </td>
                         <td class="num">
                             {{ item.total_price }}
@@ -78,7 +82,8 @@
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Оновити кошик</button>
+                <a href="{% url "cart:cart_clear" %}" >
+                <button class="btn btn-primary btn-md btn-block">Очистити кошик</button></a>
               </div>
               <div class="col-md-6">
                 <a href="{% url "shop:shop" %}" >

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.db.models import Q
 from django.views.generic import ListView
+from django.core.paginator import Paginator
 
 from .models import *
 from cart.cart import Cart
@@ -13,6 +14,8 @@ class ProductList(ListView):
     model = Product
     template_name = 'shop.html'
     context_object_name = 'products'
+    paginate_by = 12
+    page_kwarg = 'page'
 
     def get_context_data(self, *, object_list=None, **kwargs):
         cart = Cart(self.request)
@@ -220,7 +223,8 @@ def search_view(request):
         Q(name__icontains=query) | Q(description__icontains=query))
     if object_list.count():
         return render(request, 'search_result.html', context={
-                                                     'products': object_list})
+                     'text_query': query,
+                     'products': object_list})
     else:
         return  HttpResponse('Нема на складі')
 

@@ -72,7 +72,7 @@
                          {% endif %}
                       {% endif %}
                   {% endfor %}
-
+                  <a> | {% if user.is_authenticated %} {{ user }} {% else %}гість{% endif %}</a>
               </ul>
             </nav>
           </div>
@@ -94,9 +94,29 @@
 
  {% block content %}
  {% endblock %}
-
-
-
+    {% if page_obj.has_other_pages %}
+    <div class="row mt-5">
+          <div class="col-md-12 text-center">
+            <div class="site-block-27">
+              <ul>
+              {% if page_obj.has_previous %}
+                  <li><a href="?page={{ page_obj.previous_page_number }}">&lt;</a></li>
+              {% endif %}
+                  {% for p in paginator.page_range  %}
+                   {% if page_obj.number == p %}
+                     <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
+                   {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                     <li><a href="?page={{ p }}">{{ p }}</a></li>
+                   {% endif %}
+                  {% endfor %}
+              {% if page_obj.has_next %}
+                  <li><a href="?page={{ page_obj.next_page_number }}">&gt;</a></li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+    {% endif %}
     <footer class="site-footer">
       <div class="container">
         <div class="row">
@@ -104,8 +124,8 @@
 
             <div class="block-7">
               <h3 class="footer-heading mb-4">Купуйте в нас</h3>
-              <p>Зв'яжіться з нами, отримайте консультацію, виберіть засіб, купіть,
-                  користуйтесь та будьте здорові і красиві.</p>
+              <a  href="{% url 'contact' %}">Зв'яжіться з нами, отримайте консультацію, виберіть засіб, купіть,
+                  користуйтесь та будьте здорові і красиві.</a>
             </div>
           </div>
           <div class="col-lg-3 mx-auto mb-5 mb-lg-0">

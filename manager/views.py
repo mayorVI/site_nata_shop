@@ -31,3 +31,10 @@ def orders_view(request):
                                                        'orderitems': orderitems,
                                                        'title': "Отримані замовлення"})
 
+@login_required(login_url='/login/')
+@user_passes_test(is_manager)
+def update_order(request, pk):
+    Order.objects.filter(pk=pk).update(paid=True)
+    return redirect('manager:orders')
+
+

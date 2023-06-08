@@ -3,12 +3,17 @@
      {% for i in orders %}
       <li>
            <h3>{{i.first_name}}  {{ i.last_name }}, тел: {{ i.phone_number}}, email: {{ i.email}}, Створено: {{ i.created|date:'d.m.y'}}</h3>
-           <p>Адреса: {{ i.address }} {% if i.paid %} Сплачено {% endif %}</p>
+
              {% for j in orderitems %}
                  {% if j.order == i %}
                    <p> {{ j.product }} {{ j.price }} ₴, {{ j.quantity }} шт. </p>
                  {% endif %}
              {% endfor %}
+             <p style="color:#00ff00"> {% if i.paid %} Замовлення виконано {% else %}
+               <a href = '{% url 'manager:update_order' pk=i.pk %}'>
+                 <button type="button" class="btn btn-primary">Закрити замовлення</button> </a>
+           {% endif %}</p>
+
            <hr>
       </li>
      {% endfor %}

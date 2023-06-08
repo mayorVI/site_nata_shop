@@ -24,7 +24,10 @@
         <div class="row mb-5">
           <div class="col-md-12">
             <div class="bg-light rounded p-3">
-              <p class="mb-0">Постійний клієнт? <a href="#" class="d-inline-block">Натисніть</a> щоб залогінитись</p>
+              {% if not user.is_authenticated %}
+                 <p class="mb-0">Якщо Ви постійний клієнт
+                    <a href="{% url 'login' %}" class="d-inline-block">залогінтесь</a>(необов'язково)</p>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -154,9 +157,11 @@
           </div>
         </div>
         <div class="form-group row">
+           {% if  cart.get_total_price  %}
             <div class="col-lg-12">
                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="Зробити замовлення">
             </div>
+           {% endif %}
         </div>
 
         </form>
