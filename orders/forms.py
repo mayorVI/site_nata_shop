@@ -23,13 +23,14 @@ class OrderCreateForm(forms.ModelForm):
                                  'class': "form-control",
                                  'id': "c_phone",
                                  'name': "c_phone",
-                                 'placeholder': "Phone Number"
+                                 'placeholder': "Щоб подзвонити Вам"
     }))
     email = forms.EmailField(widget=forms.EmailInput(attrs={
                                  'type': "text",
                                  'class': "form-control",
                                  'id': "c_email_address",
                                  'name': "c_email_address",
+                                 'placeholder': "Краще справжній"
     }))
     address = forms.CharField(max_length=250,
                                  widget=forms.TextInput(attrs={
@@ -37,7 +38,7 @@ class OrderCreateForm(forms.ModelForm):
                                  'class': "form-control",
                                  'id': "c_address",
                                  'name': "c_address",
-                                 'placeholder': "Street address"
+                                 'placeholder': "Ваша адреса чи хоть щось"
     }))
     message = forms.CharField(max_length=250,
                                  widget=forms.Textarea(attrs={
@@ -46,7 +47,7 @@ class OrderCreateForm(forms.ModelForm):
                                  'cols': "30",
                                  'rows': "5",
                                  'class': "form-control",
-                                 'placeholder': "Сповіщення ..."
+                                 'placeholder': "Ваш коментар ..."
     }))
     class Meta:
         model = Order

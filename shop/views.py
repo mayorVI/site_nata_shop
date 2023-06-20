@@ -14,7 +14,7 @@ class ProductList(ListView):
     model = Product
     template_name = 'shop.html'
     context_object_name = 'products'
-    paginate_by = 12
+    paginate_by = 50
     page_kwarg = 'page'
 
     def get_context_data(self, *, object_list=None, **kwargs):

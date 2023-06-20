@@ -2,8 +2,8 @@ from django.shortcuts import render
 from shop.models import Product, Brand, Category, Line
 from cart.cart import Cart
 from contact.forms import LetterForm
-from contact.models import Letter
-from orders.models import Order, OrderItem
+# from contact.models import Letter
+# from orders.models import Order, OrderItem
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ def main_page(request):
 
     cart = Cart(request)
     products = Product.objects.filter(available=True, popular=True)
-    newest = Product.objects.filter(available=True, popular=False)
+    newest = Product.objects.order_by("-updated").filter(available=True, popular=False)[0:10]
     return render(request, 'main_page.html', context={'menu': menu,
                                                       'num_el': 1,
                                                       'brands': brands,
