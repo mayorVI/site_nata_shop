@@ -1,27 +1,21 @@
 from django.shortcuts import render
-from shop.models import Product, Brand, Category, Line
 from cart.cart import Cart
 from contact.forms import LetterForm
-# from contact.models import Letter
-# from orders.models import Order, OrderItem
+from shop.utils import *
+
 
 
 # Create your views here.
 
-menu = [{'title': 'Головна', 'url_name': 'main_page'},
-        {'title': 'Бренди', 'url_name': 'shop:brands'},
-        {'title': 'Типи',   'url_name': 'shop:categories'},
-        {'title': 'Лінійки', 'url_name': 'shop:lines'},
-        {'title': 'Контакти', 'url_name': 'contact'},
-]
-brands = Brand.objects.filter(available=True)
-categories = Category.objects.filter(available=True)
-lines = Line.objects.filter(available=True)
+
+# brands = Brand.objects.filter(available=True)
+# categories = Category.objects.filter(available=True)
+# lines = Line.objects.filter(available=True)
 def main_page(request):
 
     cart = Cart(request)
     products = Product.objects.filter(available=True, popular=True)
-    newest = Product.objects.order_by("-updated").filter(available=True, popular=False)[0:10]
+    newest = Product.objects.order_by("-updated").filter(available=True)[0:10]
     return render(request, 'main_page.html', context={'menu': menu,
                                                       'num_el': 1,
                                                       'brands': brands,

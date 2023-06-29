@@ -27,10 +27,10 @@
     <div class="site-section">
       <div class="container">
         <div class="row align-items-stretch section-overlap">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap bg-primary h-100">
               <a href="{% url 'shop:brand_products' brands.first.slug %}" class="h-100">
-                <h5>Holy<br>Land</h5>
+                <h5>{{ brands.0.name }}<br></h5>
                 <p>
                   Краса - то святе!
                   <strong></strong>
@@ -40,8 +40,8 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap h-100">
-              <a href="{% url 'shop:brand_products' brands.2.slug %}" class="h-100">
-                <h5>sesderma <br></h5>
+              <a href="{% url 'shop:brand_products' brands.1.slug %}" class="h-100">
+                <h5>{{ brands.1.name }}<br></h5>
                 <p>
                  Індивідуальний підхід
                   <strong> </strong>
@@ -51,8 +51,8 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap bg-warning h-100">
-              <a href="{% url 'shop:brand_products' brands.1.slug  %}" class="h-100">
-                <h5>medi+<br>derma</h5>
+              <a href="{% url 'shop:brand_products' brands.2.slug %}" class="h-100">
+                <h5>{{ brands.2.name }}<br></h5>
                 <p>
                   Допоможемо підібрати
                   <strong></strong>
@@ -60,7 +60,6 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
