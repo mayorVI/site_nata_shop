@@ -9,7 +9,7 @@ menu = [{'title': 'Головна', 'url_name': 'main_page'},
         {'title': 'Типи',   'url_name': 'shop:categories'},
         {'title': 'Лінійки', 'url_name': 'shop:lines'},
         {'title': 'Контакти', 'url_name': 'contact'},
-]
+        ]
 
 
 class DataMixin:
@@ -19,7 +19,6 @@ class DataMixin:
         context['brands'] = brands
         context['categories'] = categories
         context['lines'] = lines
-
         # if 'num_el' not in context:
         #     context['num_el'] = 1
         return context

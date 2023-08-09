@@ -33,8 +33,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
     def get_absolute_url(self):
         return reverse("shop:cat_products", kwargs={'category_slug': self.slug})
+
 
 class Line(models.Model):
     name = models.CharField(max_length=40, db_index=True, verbose_name='Лінія')
@@ -50,8 +52,10 @@ class Line(models.Model):
 
     def __str__(self):
         return self.name
+
     def get_absolute_url(self):
         return reverse("shop:line_products", kwargs={'line_slug': self.slug})
+
 
 class Product(models.Model):
     name = models.CharField(max_length=100, db_index=True, verbose_name='Назва')

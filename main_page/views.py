@@ -4,13 +4,8 @@ from contact.forms import LetterForm
 from shop.utils import *
 
 
-
 # Create your views here.
 
-
-# brands = Brand.objects.filter(available=True)
-# categories = Category.objects.filter(available=True)
-# lines = Line.objects.filter(available=True)
 def main_page(request):
 
     cart = Cart(request)
@@ -26,7 +21,6 @@ def main_page(request):
                                                       'cart': cart, })
 
 
-
 def contact(request):
 
     cart = Cart(request)
@@ -36,7 +30,7 @@ def contact(request):
         if letter_form.is_valid():
             letter_form.save()
             return render(request, 'thankyou.html', context={'menu': menu, 'num_el': 5,
-})
+                                                             })
     else:
         letter_form = LetterForm()
     return render(request, 'contact.html', context={'menu': menu,
@@ -47,5 +41,3 @@ def contact(request):
                                                     'categories': categories,
                                                     'lines': lines,
                                                     })
-
-
