@@ -141,6 +141,7 @@
             {% if 'manager' in user.groups.all.0.name %}
               <li><a href="{% url 'manager:letters' %}">Сповіщення</a></li>
               <li><a href="{% url 'manager:orders' %}">Замовлення</a></li>
+              <li><a href='admin/'>Редагувати</a></li>
             {% endif %}
             </ul>
           </div>
