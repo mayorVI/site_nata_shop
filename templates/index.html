@@ -74,7 +74,6 @@
                          {% endif %}
                       {% endif %}
                   {% endfor %}
-                  <a> | {% if user.is_authenticated %} {{ user }} {% else %}гість{% endif %}</a>
               </ul>
             </nav>
           </div>
@@ -138,10 +137,13 @@
                     <li><a href="{% url item.url_name %}">{{ item.title }}</a></li>
                  {% endif %}
              {% endfor %}
+
             {% if 'manager' in user.groups.all.0.name %}
               <li><a href="{% url 'manager:letters' %}">Сповіщення</a></li>
               <li><a href="{% url 'manager:orders' %}">Замовлення</a></li>
+              <li><a href='admin/'>Редагувати</a></li>
             {% endif %}
+            <a> {% if user.is_authenticated %} {{ user }} {% else %}гість{% endif %}</a>
             </ul>
           </div>
 
