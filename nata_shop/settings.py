@@ -31,8 +31,8 @@ DB_PORT = os.environ.get('DB_PORT')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['nata-shop-bbbf80eff4f3.herokuapp.com']
-
+ALLOWED_HOSTS = ['nata-shop-bbbf80eff4f3.herokuapp.com',
+                 'nata-shop.kyiv.ua']
 
 # Application definition
 
